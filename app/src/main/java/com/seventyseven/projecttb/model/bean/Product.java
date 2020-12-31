@@ -1,8 +1,8 @@
 package com.seventyseven.projecttb.model.bean;
 
-import org.litepal.crud.DataSupport;
+import org.litepal.crud.LitePalSupport;
 
-public class Product extends DataSupport {
+public class Product extends LitePalSupport {
     private int id;
     private String introduce;
     private String name;

@@ -2,6 +2,7 @@ package com.seventyseven.projecttb.adapter;
 
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -11,6 +12,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.seventyseven.projecttb.R;
 import com.seventyseven.projecttb.model.bean.Product;
+
+import org.litepal.LitePal;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,6 +48,16 @@ public class commonAdapter extends RecyclerView.Adapter<commonAdapter.ViewHolder
         holder.title.setText(list.get(position).getName());
         holder.count.setText(String.valueOf('×'+list.get(position).getCount()));
         holder.total.setText(String.valueOf('￥'+list.get(position).getCount()*list.get(position).getPrice()));
+        holder.sub.setOnClickListener(view -> {
+            if(list.get(position).getCount() > 1) {
+                list.get(position).setCount(list.get(position).getCount() - 1);
+            }
+            else{
+                LitePal.deleteAll(Product.class,"name = ?",list.get(position).getName());
+                list.get(position).delete();
+            }
+            notifyDataSetChanged();
+        });
     }
 
     @Override
@@ -58,6 +71,7 @@ public class commonAdapter extends RecyclerView.Adapter<commonAdapter.ViewHolder
         TextView price;
         TextView count;
         TextView total;
+        Button sub;
         public ViewHolder(View view){
             super(view);
             img = (ImageView)view.findViewById(R.id.img);
@@ -65,6 +79,7 @@ public class commonAdapter extends RecyclerView.Adapter<commonAdapter.ViewHolder
             price = (TextView)view.findViewById(R.id.price);
             count = (TextView)view.findViewById(R.id.count);
             total = (TextView)view.findViewById(R.id.total);
+            sub = (Button)view.findViewById(R.id.sub);
         }
     }
 }

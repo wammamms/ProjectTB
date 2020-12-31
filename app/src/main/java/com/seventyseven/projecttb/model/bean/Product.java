@@ -1,14 +1,23 @@
 package com.seventyseven.projecttb.model.bean;
 
-import org.litepal.crud.DataSupport;
+import org.litepal.crud.LitePalSupport;
 
-public class Product extends DataSupport {
+public class Product extends LitePalSupport {
     private int id;
     private String introduce;
     private String name;
     private String picture;
     private Double price;
     private int count;
+
+    public Product(int id, String introduce, String name, String picture, Double price, int count) {
+        this.id = id;
+        this.introduce = introduce;
+        this.name = name;
+        this.picture = picture;
+        this.price = price;
+        this.count = count;
+    }
 
     public void setCount(int count) {
         this.count = count;

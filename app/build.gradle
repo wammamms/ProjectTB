@@ -6,6 +6,10 @@ android {
     compileSdkVersion 30
     buildToolsVersion "30.0.2"
 
+    dataBinding {
+        enabled = true
+    }
+
     defaultConfig {
         applicationId "com.seventyseven.projecttb"
         minSdkVersion 24
@@ -45,4 +49,8 @@ dependencies {
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0-alpha02"
     //MZBannerView
     implementation 'com.github.pinguo-zhouwei:MZBannerView:v2.0.2'
+    //ImageLoder
+    implementation 'com.github.nostra13:Android-Universal-Image-Loader:f6a9615868482672c3630cb7db6dcf43391e80de'
+    //litepal
+    implementation 'org.litepal.android:kotlin:3.0.0'
 }

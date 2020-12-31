@@ -41,7 +41,7 @@ dependencies {
     implementation 'androidx.navigation:navigation-ui:2.3.1'
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.2.0'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0'
-    implementation 'org.litepal.android:core:3.0.0'
+    implementation 'org.litepal.guolindev:core:3.2.2'
     implementation 'androidx.recyclerview:recyclerview:1.0.0'
     implementation 'com.github.bumptech.glide:glide:3.7.0'
     testImplementation 'junit:junit:4.+'
@@ -52,4 +52,5 @@ dependencies {
     implementation 'de.hdodenhof:circleimageview:3.1.0'
     //MZBannerView
     implementation 'com.github.pinguo-zhouwei:MZBannerView:v2.0.2'
+
 }

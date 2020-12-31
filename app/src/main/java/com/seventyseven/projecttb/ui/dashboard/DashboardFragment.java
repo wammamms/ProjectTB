@@ -1,16 +1,14 @@
 package com.seventyseven.projecttb.ui.dashboard;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -26,6 +24,8 @@ import java.util.List;
 public class DashboardFragment extends Fragment {
 
     double total = 0;
+    ArrayList<Product> list0 = new ArrayList<>();
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_dashboard, container, false);
@@ -39,8 +39,8 @@ public class DashboardFragment extends Fragment {
             total+= element.getCount()*element.getPrice();
         }
         tv.setText(String.valueOf(total));
-        commonAdapter adapter = new commonAdapter();
-        adapter.updateList((ArrayList<Product>) list);
+        list0.addAll(list);
+        commonAdapter adapter = new commonAdapter(list0);
         rv.setAdapter(adapter);
         return root;
     }

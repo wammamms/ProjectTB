@@ -122,43 +122,7 @@
                                     android:text="节日大促！！！"/>
                             </LinearLayout>
 
-                            <RelativeLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="8dp">
-                                <ImageView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:background="@drawable/midautumn_recommend"/>
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="8dp"
-                                    android:orientation="vertical">
-                                    <LinearLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:orientation="horizontal">
-                                        <TextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:text="促销活动"
-                                            android:textSize="18sp"
-                                            android:layout_marginLeft="16dp"
-                                            android:textStyle="bold">
-                                        </TextView>
 
-                                        <TextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:text="活动结束时间"
-                                            android:layout_marginLeft="32dp"
-                                            android:textStyle="bold">
-                                        </TextView>
-
-                                    </LinearLayout>
-                                </LinearLayout>
-                            </RelativeLayout>
                         </LinearLayout>
 
                         <androidx.constraintlayout.widget.ConstraintLayout
@@ -190,7 +154,6 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:orientation="vertical"
-                                    android:layout_marginHorizontal="20dp"
                                     android:layout_marginBottom="20dp">
                                 </androidx.recyclerview.widget.RecyclerView>
                             </LinearLayout>

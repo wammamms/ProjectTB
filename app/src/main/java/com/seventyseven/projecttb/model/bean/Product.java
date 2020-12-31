@@ -17,6 +17,7 @@ public class Product extends LitePalSupport {
         this.introduce = introduce;
         this.picture = picture;
         this.price = price;
+        this.count = 0;
     }
 
     public void setCount(int count) {

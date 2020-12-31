@@ -1,5 +1,6 @@
 package com.seventyseven.projecttb.adapter;
 
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -10,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.seventyseven.projecttb.MyApplication;
 import com.seventyseven.projecttb.R;
 import com.seventyseven.projecttb.model.bean.Product;
 
@@ -22,21 +24,20 @@ import static com.seventyseven.projecttb.MyApplication.getContext;
 
 public class commonAdapter extends RecyclerView.Adapter<commonAdapter.ViewHolder> {
 
-    private List<Product> list = new ArrayList<Product>();
+    private List<Product> list;
+
+    public commonAdapter(ArrayList<Product> list){
+        this.list = list;
+    }
 
     public void setList(ArrayList<Product> list){
         this.list = list;
     }
 
-    public void updateList(ArrayList<Product> list){
-        this.list = list;
-        this.notifyDataSetChanged();
-    }
-
     @NonNull
     @Override
     public commonAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = View.inflate(parent.getContext(),R.layout.item_shoppingcar,parent);
+        View view = View.inflate(MyApplication.getContext(),R.layout.item_shoppingcar,null);
         ViewHolder viewHolder = new ViewHolder(view);
         return viewHolder;
     }
@@ -62,7 +63,7 @@ public class commonAdapter extends RecyclerView.Adapter<commonAdapter.ViewHolder
 
     @Override
     public int getItemCount() {
-        return 0;
+        return list.size();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder{

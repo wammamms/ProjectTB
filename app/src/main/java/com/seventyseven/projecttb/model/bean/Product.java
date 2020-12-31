@@ -10,6 +10,15 @@ public class Product extends DataSupport {
     private Double price;
     private int count;
 
+    public Product(){ }
+
+    public Product(String name,String introduce,String picture,Double price){
+        this.name = name;
+        this.introduce = introduce;
+        this.picture = picture;
+        this.price = price;
+    }
+
     public void setCount(int count) {
         this.count = count;
     }

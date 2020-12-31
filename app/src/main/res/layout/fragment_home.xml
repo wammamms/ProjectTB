@@ -1,22 +1,262 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.home.HomeFragment">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <TextView
-        android:id="@+id/text_home"
+    <data>
+        <import type="android.view.View"/>
+        <variable
+            name="data"
+            type="com.example.onlinemarket.ui.home.HomeViewModel" />
+    </data>
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            refreshData="@{data}">
+
+            <androidx.coordinatorlayout.widget.CoordinatorLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <com.google.android.material.appbar.AppBarLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    loadActivityBackground="@{data.action.type}">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+                        <ImageView
+                            android:layout_marginLeft="20dp"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_marginTop="@dimen/status_bar_height"
+                            android:visibility="@{data.action.type==0?View.GONE:View.VISIBLE}"
+                            loadActivityIcon="@{data.action.type}"/>
+
+                        <EditText
+                            android:layout_weight="1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/status_bar_height"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginRight="20dp"
+                            android:layout_marginBottom="10dp"
+                            android:background="@drawable/search_et"
+                            android:gravity="center"
+                            android:hint="search here"
+                            android:drawableStart="@drawable/icon_search"
+                            android:paddingLeft="10dp"
+                            android:nestedScrollingEnabled="true"
+                            android:textColor="#000000"
+                            android:textSize="18sp"
+                            android:theme="@style/MyEditText" />
+                    </LinearLayout>
+                </com.google.android.material.appbar.AppBarLayout>
+
+                <androidx.core.widget.NestedScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        tools:context=".ui.home.HomeFragment"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            loadActivityBackground="@{data.action.type}"
+                            android:layout_width="match_parent"
+                            android:layout_height="320dp"
+                            android:nestedScrollingEnabled="false"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="220dp"
+                                android:layout_marginTop="70dp"
+                                android:background="@color/transparent"
+                                android:orientation="vertical">
+
+                                <com.zhouwei.mzbanner.MZBannerView
+                                    android:id="@+id/banner"
+                                    bannerList="@{data.bannerPic}"
+                                    bannerType="@{data.bannerType}"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="200dp"
+                                    android:layout_margin="16dp"
+                                    app:indicatorPaddingLeft="10dp"
+                                    app:open_mz_mode="false" />
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <GridView
+                            android:layout_width="match_parent"
+                            android:layout_height="148dp"
+                            android:layout_marginTop="16dp"
+                            android:numColumns="5"
+                            android:stretchMode="columnWidth"
+                            android:verticalSpacing="8dp"
+                            picList="@{data.picList}"
+                            nameList="@{data.nameList}"/>
+
+                        <LinearLayout
+                            isVisiable="@{data.activityproductList}"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="12dp"
+                            android:orientation="vertical">
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginHorizontal="8dp"
+                                android:layout_marginTop="12dp"
+                                android:orientation="horizontal"
+                                android:visibility="@{data.action.type==0?View.GONE:View.VISIBLE}">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="16dp"
+                                    android:text="活动"
+                                    android:textStyle="bold"/>
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="8dp"
+                                    android:paddingHorizontal="5dp"
+                                    android:text="快讯"
+                                    android:textColor="#ffffff"
+                                    android:textStyle="bold"
+                                    ActionTextBg="@{data.action.type}"/>
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="8dp"
+                                    android:text="HOT"
+                                    android:textColor="#B61F1D"/>
+                                <TextView
+                                    android:id="@+id/tv_action"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="8dp"
+                                    android:singleLine="true"
+                                    android:ellipsize="marquee"
+                                    android:marqueeRepeatLimit="marquee_forever"
+                                    android:text="@{data.action.type == 1?data.actionTitle0:data.actionTitle1}"/>
+                            </LinearLayout>
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginHorizontal="16dp"
+                                android:layout_marginTop="12dp"
+                                activityBanner="@{data.action.type}"/>
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp">
+                                <ImageView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    activityBg="@{data.action.type}"/>
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="8dp"
+                                    android:orientation="vertical">
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="horizontal">
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="促销活动"
+                                            android:textSize="18sp"
+                                            android:layout_marginLeft="16dp"
+                                            android:textStyle="bold"
+                                            ActionTextColor="@{data.action.type}">
+                                        </TextView>
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="活动结束时间"
+                                            android:layout_marginLeft="32dp"
+                                            android:textStyle="bold">
+                                        </TextView>
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="@{data.action.time}"
+                                            android:layout_marginLeft="32dp"
+                                            android:textStyle="bold"
+                                            android:textColor="#ffffff"
+                                            android:paddingHorizontal="5dp"
+                                            ActionTextBg="@{data.action.type}">
+                                        </TextView>
+
+                                    </LinearLayout>
+
+                                    <androidx.recyclerview.widget.RecyclerView
+                                        productList="@{data.activityproductList}"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="5dp"
+                                        android:layout_marginHorizontal="16dp"
+                                        android:orientation="horizontal"/>
+                                </LinearLayout>
+                            </RelativeLayout>
+                        </LinearLayout>
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            RecommendBg="@{data.action.type}">
+
+                            <LinearLayout
+                                isVisiable="@{data.recommendList}"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="16dp"
+                                android:orientation="vertical"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintRight_toRightOf="parent"
+                                app:layout_constraintTop_toTopOf="parent">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="24dp"
+                                    android:text="推荐商品"
+                                    android:textSize="28sp"
+                                    RecommendTextColor="@{data.action.type}"
+                                    android:layout_gravity="center"
+                                    android:typeface="sans">
+                                </TextView>
+
+                                <androidx.recyclerview.widget.RecyclerView
+                                    recommendList="@{data.recommendList}"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical"
+                                    android:layout_marginHorizontal="20dp"
+                                    android:layout_marginBottom="20dp">
+                                </androidx.recyclerview.widget.RecyclerView>
+                            </LinearLayout>
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+                    </LinearLayout>
+                </androidx.core.widget.NestedScrollView>
+            </androidx.coordinatorlayout.widget.CoordinatorLayout>
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+    </LinearLayout>
+
+</layout>
